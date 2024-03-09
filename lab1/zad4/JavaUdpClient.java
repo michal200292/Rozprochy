@@ -1,3 +1,4 @@
+package zad4;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -22,7 +23,7 @@ public class JavaUdpClient {
             recSocket = new DatagramSocket(receivingPort);
 
             InetAddress address = InetAddress.getByName("localhost");
-            byte[] sendBuffer = "Ping Java Udp".getBytes();
+            byte[] sendBuffer = "Java".getBytes();
 
             DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, address, portNumber);
             socket.send(sendPacket);

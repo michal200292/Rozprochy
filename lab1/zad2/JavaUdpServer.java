@@ -1,3 +1,5 @@
+package zad2;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.util.Arrays;

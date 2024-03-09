@@ -10,12 +10,12 @@ serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 serverSocket.bind(('', rec_port))
 
 
-msg = msg_bytes = (300).to_bytes(4, byteorder='little')
+msg = 'Python'
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-client.sendto(msg, (serverIP, serverPort))
+client.sendto(bytes(msg, 'utf-8'), (serverIP, serverPort))
 
 buff, address = serverSocket.recvfrom(1024)
-print("python udp server received msg: " + str(int.from_bytes(buff, byteorder='big')))
+print("python udp server received msg: " + str(buff.decode()))
 
 
 
