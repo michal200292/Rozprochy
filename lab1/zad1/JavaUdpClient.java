@@ -12,14 +12,11 @@ public class JavaUdpClient {
 
         DatagramSocket socket = null;
         int portNumber = 9008;
-        
         int receivingPort = 9009;
-        DatagramSocket recSocket = null;
         byte[] receiveBuffer = new byte[1024];
 
         try {
-            socket = new DatagramSocket();
-            recSocket = new DatagramSocket(receivingPort);
+            socket = new DatagramSocket(receivingPort);
 
             InetAddress address = InetAddress.getByName("localhost");
             byte[] sendBuffer = "Ping Java Udp".getBytes();
@@ -30,7 +27,7 @@ public class JavaUdpClient {
             Arrays.fill(receiveBuffer, (byte)0);
             DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
 
-            recSocket.receive(receivePacket);
+            socket.receive(receivePacket);
             String msg = new String(receivePacket.getData());
             System.out.println("Message from server: " + msg);
 
@@ -41,7 +38,6 @@ public class JavaUdpClient {
         finally {
             if (socket != null) {
                 socket.close();
-                recSocket.close();
             }
         }
     }
