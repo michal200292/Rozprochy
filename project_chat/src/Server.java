@@ -53,12 +53,18 @@ public class Server {
             if(nickname.equals(key)){
                 continue;
             }
-            handler.out.println(message);
+            handler.out.println("(" + nickname + ") " + message);
         }
     }
 
     static synchronized void addClient(String nickname, ClientHandler handler){
         Server.clients.put(nickname, handler);
+    }
+
+    static synchronized void removeClient(String nickname){
+        if(Server.clients.containsKey(nickname)){
+            Server.clients.remove(nickname);
+        }
     }
 
 }

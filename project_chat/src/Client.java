@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
+
     public static void main(String[] args) throws IOException {
 
         if(args.length != 3){
@@ -36,13 +37,29 @@ public class Client {
             out.println(clientName);
             String response = in.readLine();
             System.out.println("received response: " + response);
-
-
+            
+            ListenerTCP listenerTCP = new ListenerTCP(socket, in);
+            new Thread(listenerTCP).start();
+            
             String line = "";
-            while((response = in.readLine()) != null){
-                // line = input.nextLine();
-                // out.println(line);
-                System.out.println(response);
+            StringBuilder multiline = new StringBuilder();
+            while(!line.equals("end") && input.hasNextLine()){
+                line = input.nextLine();
+                line.trim();
+                if(line.length() == 1 && line.charAt(0) == 'U'){
+                    multiline.setLength(0);
+                    while(!line.equals("/") && input.hasNextLine()){
+                        
+                        line = input.nextLine();
+                        multiline.append(line);
+                        multiline.append('\n');
+                    }
+                    out.println(multiline.toString());
+                }
+                else{
+                    out.println(line);
+                }
+                
             }
 
         } catch (Exception e) {

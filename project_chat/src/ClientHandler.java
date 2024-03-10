@@ -32,17 +32,16 @@ class ClientHandler implements Runnable{
 
             String line = "";
             while((line = in.readLine()) != null){
-                System.out.println(line);
-                out.println("ACK");
+                System.out.println("(" + clientName + ") " + line);
                 Server.sendMessage(clientName, line);
             }
 
-            System.out.println(clientName + " out");
-            
+            System.out.println(clientName + " out"); 
         } 
         catch (Exception e) { 
         } 
         finally { 
+            Server.removeClient(clientName);
             try{
                 if (out != null) { 
                     out.close(); 
