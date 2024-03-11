@@ -7,21 +7,22 @@ import java.net.MulticastSocket;
 import java.util.Arrays;
 
 public class Multicastreceiver implements Runnable{
-    public final int portNumber;
     MulticastSocket socket;
     DatagramPacket packet;
     private byte[] buff;
     private InetAddress group;
+    public String userName;
 
-    public Multicastreceiver(int portNumber){
-        this.portNumber = portNumber;
+    public Multicastreceiver(String userName){
         this.buff = new byte[1024];
+        this.userName = userName;
     }
     
+    @SuppressWarnings("deprecation")
     public void run(){
         try {
-            socket = new MulticastSocket(portNumber);
-            group = InetAddress.getByName("224.0.0.1");
+            socket = new MulticastSocket(9009);
+            group = InetAddress.getByName("230.0.0.0");
             socket.joinGroup(group);
 
             while(true){
@@ -31,8 +32,10 @@ public class Multicastreceiver implements Runnable{
 
                 String msg = new String(packet.getData());
                 String [] arr = msg.split(" ", 2);
-                System.out.println("(" + arr[0] + ")");
-                System.out.println(arr[1]); 
+                if(!arr[0].equals(userName)){
+                    System.out.println("(" + arr[0] + ")");
+                    System.out.println(arr[1]);                   
+                }
             }
         } catch (Exception e) {}
         finally{

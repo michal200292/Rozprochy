@@ -20,9 +20,7 @@ public class ListenerTCP implements Runnable{
                 System.out.println(line);
             }
         }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+        catch (IOException e){}
     }
     
 }

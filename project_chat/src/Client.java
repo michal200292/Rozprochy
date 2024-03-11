@@ -62,13 +62,10 @@ public class Client {
             ListenerTCP listenerTCP = new ListenerTCP(socket, in);
             new Thread(listenerTCP).start();
 
-            // new Thread(new Multicastreceiver(portNumber))
+            new Thread(new Multicastreceiver(clientName)).start();
 
             String line = "";
-            while(!line.equals("end") && input.hasNextLine()){
-                line = input.nextLine();
-                line.trim();
-                
+            while(input.hasNextLine() && !(line = input.nextLine().trim()).equals("end")){
                 if(line.length() == 1 && line.charAt(0) == 'U'){
                     sendUdp();
                 }
@@ -114,9 +111,9 @@ public class Client {
     }
 
     public void sendMulticast() throws IOException{
-        InetAddress group = InetAddress.getByName("224.0.0.1");
+        InetAddress group = InetAddress.getByName("230.0.0.0");
         byte[] buff = parseInput().getBytes();
-        packet = new DatagramPacket(buff, buff.length, group, portNumber);
+        packet = new DatagramPacket(buff, buff.length, group, 9009);
         udpSocket.send(packet);
     }
 }

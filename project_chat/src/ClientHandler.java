@@ -46,8 +46,7 @@ class ClientHandler implements Runnable{
             }
             server.sendTCPMessage(clientName, "(server) " + clientName + " left the server");
         } 
-        catch (Exception e) { 
-        } 
+        catch (Exception e) {} 
         finally { 
             if(newClient){
                 server.removeClient(clientName);
