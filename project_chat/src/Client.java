@@ -63,6 +63,8 @@ public class Client {
             ListenerTCP listenerTCP = new ListenerTCP(socket, in);
             new Thread(listenerTCP).start();
 
+            // new Thread(new Multicastreceiver(portNumber))
+
             String line = "";
             while(!line.equals("end") && input.hasNextLine()){
                 line = input.nextLine();
@@ -72,7 +74,7 @@ public class Client {
                     sendUdp();
                 }
                 else if(line.length() == 1 && line.charAt(0) == 'M'){
-                    sendUdp();
+                    sendMulticast();
                 }
                 else{
                     out.println(line);
@@ -82,15 +84,12 @@ public class Client {
         } catch (Exception e) {
             
         } finally {
-            if (input != null){
-                input.close();
-            }
-            if (socket != null){
-                socket.close();
-            }
-            if(udpSocket != null){
-                udpSocket.close();
-            }
+            if (out != null) out.close();
+            if (in != null) in.close();
+            if (input != null) input.close();
+            if (socket != null) socket.close();
+            if (udpSocket != null) udpSocket.close();
+            
         }
     }
 
@@ -116,9 +115,9 @@ public class Client {
     }
 
     public void sendMulticast() throws IOException{
-        InetAddress address = InetAddress.getByName(hostName);
+        InetAddress group = InetAddress.getByName("224.0.0.1");
         byte[] buff = parseInput().getBytes();
-        packet = new DatagramPacket(buff, buff.length, address, portNumber);
+        packet = new DatagramPacket(buff, buff.length, group, portNumber);
         udpSocket.send(packet);
     }
 }

@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.net.SocketException;
 
 class ClientHandler implements Runnable{
+
     public final Socket clientSocket; 
     public Integer clientUdpPort;
     public int clientPort;
@@ -46,7 +47,6 @@ class ClientHandler implements Runnable{
             while((line = in.readLine()) != null){
                 server.sendTCPMessage(clientName, "(" + clientName + ") " + line);
             }
-
             server.sendTCPMessage(clientName, "(server) " + clientName + " left the server");
         } 
         catch (Exception e) { 
@@ -56,15 +56,9 @@ class ClientHandler implements Runnable{
                 server.removeClient(clientName);
             }
             try{
-                if (out != null) { 
-                    out.close(); 
-                } 
-                if (in != null) { 
-                    in.close(); 
-                } 
-                if (clientSocket != null){
-                    clientSocket.close();
-                }
+                if (out != null) out.close(); 
+                if (in != null) in.close(); 
+                if (clientSocket != null) clientSocket.close();
             }
             catch (IOException e){
                 e.printStackTrace();

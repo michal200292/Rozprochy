@@ -38,6 +38,7 @@ public class Server {
             serverSocket = new ServerSocket(portNumber);   
             UDPhandler udpHandler = new UDPhandler(this, portNumber); 
             new Thread(udpHandler).start();
+            // new Thread(new Multicastreceiver(portNumber)).start();
 
             while(true){
                 Socket clientSocket = serverSocket.accept();
