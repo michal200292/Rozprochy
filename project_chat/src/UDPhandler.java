@@ -8,9 +8,9 @@ public class UDPhandler implements Runnable{
     public final int portNumber;
     DatagramSocket socket;
     DatagramPacket packet;
-    private final boolean server;
+    public final Server server;
 
-    public UDPhandler(int portNumber, boolean server){
+    public UDPhandler(Server server, int portNumber){
         this.portNumber = portNumber;
         this.server = server;
     }
@@ -25,19 +25,19 @@ public class UDPhandler implements Runnable{
                 socket.receive(packet);
                 String msg = new String(packet.getData());
                 
-                String [] arr = msg.split("\n", 2);
-                if(!server){
+                String [] arr = msg.split(" ", 2);
+                if(server == null){
                     System.out.println("(" + arr[0] + ")");
                     System.out.println(arr[1]);
                 }
                 else{
-                    Server.sendUDPMessage(arr[0], arr[1], socket);
+                    server.sendUDPMessage(arr[0], arr[1], socket);
                 }
                 
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         finally{
             if(socket != null){

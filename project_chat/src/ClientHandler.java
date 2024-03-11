@@ -11,30 +11,30 @@ class ClientHandler implements Runnable{
     public final Socket clientSocket; 
     public Integer clientUdpPort;
     public int clientPort;
-
     private String clientName;
     public PrintWriter out;
     private BufferedReader in;
+    public Server server;
   
-    public ClientHandler(Socket socket) throws SocketException 
+    public ClientHandler(Server server, Socket socket) throws SocketException 
     { 
         this.clientSocket = socket;
+        this.server = server;
     }
 
     public void run()
     { 
 
         boolean newClient = false;
-
         try { 
             out = new PrintWriter(clientSocket.getOutputStream(), true); 
             in = new BufferedReader( new InputStreamReader( clientSocket.getInputStream())); 
             clientName = in.readLine();
             
-            newClient = Server.addClient(clientName, this);
+            newClient = server.addClient(clientName, this);
             if(newClient){
                 out.println("ACK");
-                Server.sendTCPMessage("", "(server) " + clientName + " just joined the server");
+                server.sendTCPMessage("", "(server) " + clientName + " just joined the server");
             }
             else{
                 out.println("NACK");
@@ -42,19 +42,18 @@ class ClientHandler implements Runnable{
             }
 
             clientPort = Integer.parseInt(in.readLine());
-
             String line = "";
             while((line = in.readLine()) != null){
-                Server.sendTCPMessage(clientName, "(" + clientName + ") " + line);
+                server.sendTCPMessage(clientName, "(" + clientName + ") " + line);
             }
 
-            Server.sendTCPMessage(clientName, "(server) " + clientName + " left the server");
+            server.sendTCPMessage(clientName, "(server) " + clientName + " left the server");
         } 
         catch (Exception e) { 
         } 
         finally { 
             if(newClient){
-                Server.removeClient(clientName);
+                server.removeClient(clientName);
             }
             try{
                 if (out != null) { 

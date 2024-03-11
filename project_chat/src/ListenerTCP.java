@@ -21,9 +21,8 @@ public class ListenerTCP implements Runnable{
             }
         }
         catch (IOException e){
-            
+            e.printStackTrace();
         }
-        
     }
     
 }
