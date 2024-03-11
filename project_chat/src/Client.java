@@ -58,7 +58,6 @@ public class Client {
             udpSocket = new DatagramSocket();
             UDPhandler listenerUDP = new UDPhandler(null, socket.getLocalPort());
             new Thread(listenerUDP).start();
-            out.println(socket.getLocalPort());
 
             ListenerTCP listenerTCP = new ListenerTCP(socket, in);
             new Thread(listenerTCP).start();

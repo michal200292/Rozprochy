@@ -10,8 +10,6 @@ import java.net.SocketException;
 class ClientHandler implements Runnable{
 
     public final Socket clientSocket; 
-    public Integer clientUdpPort;
-    public int clientPort;
     private String clientName;
     public PrintWriter out;
     private BufferedReader in;
@@ -42,7 +40,6 @@ class ClientHandler implements Runnable{
                 return;
             }
 
-            clientPort = Integer.parseInt(in.readLine());
             String line = "";
             while((line = in.readLine()) != null){
                 server.sendTCPMessage(clientName, "(" + clientName + ") " + line);

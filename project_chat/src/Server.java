@@ -77,7 +77,7 @@ public class Server {
             }
             byte[] buff = (nickname + " " + message).getBytes();
             DatagramPacket packet = new DatagramPacket(buff, buff.length, 
-            handler.clientSocket.getLocalAddress(), handler.clientPort);
+            handler.clientSocket.getLocalAddress(), handler.clientSocket.getPort());
             try {
                 socket.send(packet);
             } catch (IOException e) {
