@@ -1,6 +1,9 @@
 package src;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -26,11 +29,14 @@ public class Server {
             System.exit(1);
         }
         System.out.println("Started server " + serverName);
-    
+        
 
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(portNumber);
+            serverSocket = new ServerSocket(portNumber);   
+            UDPhandler udpHandler = new UDPhandler(portNumber, true); 
+            new Thread(udpHandler).start();
+
             while(true){
                 Socket clientSocket = serverSocket.accept();
                 ClientHandler handler = new ClientHandler(clientSocket);
@@ -46,19 +52,43 @@ public class Server {
         }
     }
 
-    static synchronized void sendMessage(String nickname, String message){
+    static synchronized void sendTCPMessage(String nickname, String message){
+        System.out.println(message);
         for (Map.Entry<String, ClientHandler> entry : Server.clients.entrySet()) {
             String key = entry.getKey();
             ClientHandler handler = entry.getValue();
             if(nickname.equals(key)){
                 continue;
             }
-            handler.out.println("(" + nickname + ") " + message);
+            handler.out.println(message);
         }
     }
 
-    static synchronized void addClient(String nickname, ClientHandler handler){
+    static synchronized void sendUDPMessage(String nickname, String message, DatagramSocket socket) throws UnsupportedEncodingException{
+        System.out.println("(" + nickname + ")\n" + message);
+        for (Map.Entry<String, ClientHandler> entry : Server.clients.entrySet()) {
+            String key = entry.getKey();
+            ClientHandler handler = entry.getValue();
+            if(nickname.equals(key)){
+                continue;
+            }
+            byte[] buff = (nickname + '\n' + message).getBytes();
+            DatagramPacket packet = new DatagramPacket(buff, buff.length, 
+            handler.clientSocket.getLocalAddress(), handler.clientPort);
+            try {
+                socket.send(packet);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    static synchronized boolean addClient(String nickname, ClientHandler handler){
+        if(Server.clients.containsKey(nickname)){
+            return false;
+        }
         Server.clients.put(nickname, handler);
+        return true;
     }
 
     static synchronized void removeClient(String nickname){

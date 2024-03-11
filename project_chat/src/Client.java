@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -24,10 +27,13 @@ public class Client {
             System.err.println("Port should be an Integer");
             System.exit(1);
         }
-        System.out.println("Client " + clientName);
 
         Scanner input = new Scanner(System.in);
         Socket socket = null;
+        DatagramSocket udpSocket = null;
+        DatagramPacket packet = null;
+        InetAddress address = InetAddress.getByName(hostName);
+        byte[] buff;
 
         try {
             socket = new Socket(hostName, portNumber);
@@ -36,30 +42,47 @@ public class Client {
 
             out.println(clientName);
             String response = in.readLine();
-            System.out.println("received response: " + response);
+
+            if(response.equals("NACK")){
+                System.out.println("Nickname " + clientName + " is already taken");
+                return;
+            }
+            else{
+                System.out.println("Connected to server");
+            }
             
+            udpSocket = new DatagramSocket();
+
+            UDPhandler listenerUDP = new UDPhandler(socket.getLocalPort(), false);
+            new Thread(listenerUDP).start();
+            out.println(socket.getLocalPort());
+
             ListenerTCP listenerTCP = new ListenerTCP(socket, in);
             new Thread(listenerTCP).start();
             
             String line = "";
-            StringBuilder multiline = new StringBuilder();
+            StringBuilder udpMsg = new StringBuilder();
+            
             while(!line.equals("end") && input.hasNextLine()){
                 line = input.nextLine();
                 line.trim();
                 if(line.length() == 1 && line.charAt(0) == 'U'){
-                    multiline.setLength(0);
-                    while(!line.equals("/") && input.hasNextLine()){
-                        
+                    udpMsg.setLength(0);
+                    udpMsg.append(clientName);
+                    udpMsg.append("\n");
+                    while(!line.equals("") && input.hasNextLine()){
                         line = input.nextLine();
-                        multiline.append(line);
-                        multiline.append('\n');
+                        udpMsg.append(line);
+                        udpMsg.append('\n');
                     }
-                    out.println(multiline.toString());
+                    udpMsg.delete(udpMsg.length() - 2, udpMsg.length() - 1);
+                    buff = udpMsg.toString().getBytes();
+                    packet = new DatagramPacket(buff, buff.length, address, portNumber);
+                    udpSocket.send(packet);
                 }
                 else{
                     out.println(line);
                 }
-                
             }
 
         } catch (Exception e) {
@@ -70,6 +93,9 @@ public class Client {
             }
             if (socket != null){
                 socket.close();
+            }
+            if(udpSocket != null){
+                udpSocket.close();
             }
         }
     }
