@@ -1,1 +1,1 @@
-java src.Client $Args[0] localhost 8008
+java src.Client.Client $Args[0] localhost 8008
