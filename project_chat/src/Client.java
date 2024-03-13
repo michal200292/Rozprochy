@@ -16,7 +16,6 @@ public class Client {
     public String hostName;
     public int portNumber;
     private Scanner input;
-    private Socket socket;
     private DatagramSocket udpSocket;
     private DatagramPacket packet;
     private PrintWriter out;
@@ -40,8 +39,7 @@ public class Client {
 
 
     public void run() throws IOException{
-        try {
-            socket = new Socket(hostName, portNumber);
+        try(Socket socket = new Socket(hostName, portNumber)) {
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             
@@ -83,9 +81,7 @@ public class Client {
             if (out != null) out.close();
             if (in != null) in.close();
             if (input != null) input.close();
-            if (socket != null) socket.close();
-            if (udpSocket != null) udpSocket.close();
-            
+            if (udpSocket != null) udpSocket.close();   
         }
     }
 

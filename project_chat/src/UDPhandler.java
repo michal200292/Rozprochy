@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class UDPhandler implements Runnable{
     public final int portNumber;
-    DatagramSocket socket;
+    
     DatagramPacket packet;
     public final Server server;
 
@@ -16,8 +16,7 @@ public class UDPhandler implements Runnable{
     }
     
     public void run(){
-        try {
-            socket = new DatagramSocket(portNumber);
+        try(DatagramSocket socket = new DatagramSocket(portNumber)){
             byte[] buff = new byte[1024];
             while(true){
                 Arrays.fill(buff, (byte)0);
@@ -36,13 +35,6 @@ public class UDPhandler implements Runnable{
                 
             }
 
-        } catch (Exception e) {
-
-        }
-        finally{
-            if(socket != null){
-                socket.close();
-            }
-        }
+        } catch (Exception e) {}
     }
 }

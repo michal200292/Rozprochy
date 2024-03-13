@@ -33,11 +33,9 @@ public class Server {
 
     public void run() throws IOException{
         System.out.println("Started server " + serverName);
-        ServerSocket serverSocket = null;
-        try {
-            serverSocket = new ServerSocket(portNumber);   
-            UDPhandler udpHandler = new UDPhandler(this, portNumber); 
-            new Thread(udpHandler).start();
+        try(ServerSocket serverSocket = new ServerSocket(portNumber)) {
+
+            new Thread(new UDPhandler(this, portNumber)).start();
             new Thread(new Multicastreceiver("")).start();
 
             while(true){
@@ -45,13 +43,9 @@ public class Server {
                 ClientHandler handler = new ClientHandler(this, clientSocket);
                 new Thread(handler).start();
             }
+            
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally{
-            if (serverSocket != null){
-                serverSocket.close();
-            }
         }
     }
 
