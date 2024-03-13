@@ -1,4 +1,4 @@
-package src;
+package src.Server;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -8,6 +8,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+
+import src.UdpHandlers.Multicastreceiver;
+import src.UdpHandlers.UDPhandler;
 
 public class Server {
 

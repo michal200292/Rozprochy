@@ -1,12 +1,13 @@
-package src;
+package src.UdpHandlers;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.util.Arrays;
 
+import src.Server.Server;
+
 public class UDPhandler implements Runnable{
     public final int portNumber;
-    
     DatagramPacket packet;
     public final Server server;
 

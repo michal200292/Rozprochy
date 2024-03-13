@@ -1,4 +1,4 @@
-package src;
+package src.Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,9 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
+
+import src.UdpHandlers.Multicastreceiver;
+import src.UdpHandlers.UDPhandler;
 
 public class Client {
 

@@ -1,4 +1,4 @@
-package src;
+package src.UdpHandlers;
 
 import java.net.DatagramPacket;
 import java.net.InetAddress;
