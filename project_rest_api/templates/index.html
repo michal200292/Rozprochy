@@ -6,30 +6,33 @@
     <body>
         <div style="width:400px; margin:0 auto;">
             <h1>Basic Form</h1>
+
             <form method="POST" action="/results" enctype="multipart/form-data">
+
                 <label for="currency1">Currency to sell:
                     <select name="currency1">
-                    <option value="USD">USD</option>
-                    <option value="PLN">PLN</option>
-                    <option value="GBP">GBP</option>
-                    <option value="EUR">EUR</option>
+                        {% for opt, name in myOptions:%}
+                            <option value="{{ opt }}">{{ name }}</option>
+                        {% endfor %}
                     </select>
                 </label><br><br>
+
                 <label for="currency2">Currency to buy:
                     <select name="currency2">
-                    <option value="USD">USD</option>
-                    <option value="PLN">PLN</option>
-                    <option value="GBP">GBP</option>
-                    <option value="EUR">EUR</option>
+                        {% for opt, name in myOptions:%}
+                            <option value="{{ opt }}">{{ name }}</option>
+                        {% endfor %}
                     </select>
                 </label><br><br>
 
                 <label for="start_date">Date range<br>
                     from: <input type="date" name="start_date">
                 </label>
+
                 <label for="end_date">
                     to: <input type="date" name="end_date">
                 </label><br><br>
+
                 <input type="submit" value="Submit">
             </form>
         </div>

@@ -5,7 +5,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.encoders import jsonable_encoder
 from datetime import date
 from starlette.staticfiles import StaticFiles
-from schemas import CustomForm, ExRate, FxRate, get_cat_link, process_data
+from schemas import CustomForm, ExRate, FxRate, get_cat_link, process_currency, combined
 import httpx
 import asyncio
 
@@ -32,7 +32,8 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 @app.get('/', response_class=HTMLResponse, status_code=201)
 async def get_basic_form(request: Request):
-    return templates.TemplateResponse(request=request, name="index.html")
+    context = {"myOptions": combined}
+    return templates.TemplateResponse(request=request, name="index.html", context=context)
 
 
 @app.post('/results', response_class=HTMLResponse, status_code=202)
@@ -41,7 +42,7 @@ async def post_form(request: Request, form: CustomForm = Depends(CustomForm.as_f
     return templates.TemplateResponse(request=request, name="results.html", context=context)
 
 
-async def fetch_data(form: CustomForm):
+async def fetch_data(form: CustomForm) -> tuple:
     urls = [
         get_cat_link(),
         ExRate.get_singleton().get_link(form),
@@ -54,7 +55,7 @@ async def fetch_data(form: CustomForm):
     return result
 
 
-async def parse_request(form: CustomForm):
+async def parse_request(form: CustomForm) -> dict:
     if not form.start_date <= form.end_date <= date.today():
         if form.start_date > form.end_date:
             msg = "Start date must be before end date"
@@ -74,7 +75,14 @@ async def parse_request(form: CustomForm):
             )
 
     cat, ex_rate, fx_rate = result
-    process_data(fx_rate, form)
-    return {"cat": cat.json()[0]['url'], "conversion_rate": ex_rate.json()['conversion_rate'],
-            "curr1": form.currency1, "curr2": form.currency2}
+    process_currency(fx_rate, form)
+
+    context = {
+        "cat": cat.json()[0]['url'],
+        "conversion_rate": ex_rate.json()['conversion_rate'],
+        "curr1": form.currency1,
+        "curr2": form.currency2
+    }
+
+    return context
 

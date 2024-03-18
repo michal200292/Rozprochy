@@ -6,9 +6,16 @@ import os
 from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 import numpy as np
+import enum
 
 
 load_dotenv()
+
+currency = ['PLN', 'USD', 'GBP', 'EUR']
+countries = ['Poland', 'United States', 'Great Britain', 'Germany']
+combined = [(curr, f"{curr}({country})") for curr, country in zip(currency, countries)]
+
+Currency = enum.Enum('Currency', list(zip(currency, currency)))
 
 
 class CustomForm(BaseModel):
@@ -20,8 +27,8 @@ class CustomForm(BaseModel):
     @classmethod
     def as_form(
             cls,
-            currency1: str = Form(...),
-            currency2: str = Form(...),
+            currency1: Currency = Form(...),
+            currency2: Currency = Form(...),
             start_date: date = Form(...),
             end_date: date = Form(...),
     ):
@@ -34,16 +41,16 @@ class CustomForm(BaseModel):
 
 
 class Exchange(ABC):
-    _singleton: 'Exchange' = None
+    _object: 'Exchange' = None
 
     def __init__(self, key):
         self.api_key: str = key
 
     @classmethod
     def get_singleton(cls):
-        if cls._singleton is None:
-            cls._singleton = cls(cls.get_api_key())
-        return cls._singleton
+        if cls._object is None:
+            cls._object = cls(cls.get_api_key())
+        return cls._object
 
     @classmethod
     @abstractmethod
@@ -56,7 +63,7 @@ class Exchange(ABC):
 
 
 class ExRate(Exchange):
-    _singleton: 'ExRate' = None
+    _object: 'ExRate' = None
 
     @classmethod
     def get_api_key(cls):
@@ -79,7 +86,9 @@ class FxRate(Exchange):
 
     def get_link(self, form: CustomForm):
         link = f"https://api.fxratesapi.com/" \
-               f"timeseries?start_date={form.start_date}&end_date={form.end_date}"
+               f"timeseries?start_date={form.start_date}&end_date={form.end_date}" \
+               f"&currencies={form.currency1},{form.currency2}" \
+               f"&api-key={self.api_key}"
         return link
 
 
@@ -87,20 +96,17 @@ def get_cat_link():
     return "https://api.thecatapi.com/v1/images/search"
 
 
-def process_data(data, form: CustomForm):
+def process_currency(data, form: CustomForm):
     values1 = []
     values2 = []
     for rate in data.json()['rates']:
-        for currency, val in data.json()['rates'][rate].items():
-            if currency.lower() == form.currency1.lower():
+        for curr, val in data.json()['rates'][rate].items():
+            if curr.lower() == form.currency1.lower():
                 values1.append(val)
-            if currency.lower() == form.currency2.lower():
+            if curr.lower() == form.currency2.lower():
                 values2.append(val)
 
     values1, values2 = np.array(values1), np.array(values2)
-
-    plt.show()
-
     plt.plot(list(range(len(values1))), values2 / values1)
     plt.xlabel(f"{form.currency1}")
     plt.ylabel(f"{form.currency2}")
@@ -108,4 +114,5 @@ def process_data(data, form: CustomForm):
               f"from {form.start_date} to {form.end_date}")
 
     plt.savefig('static/currency.png')
+    plt.close()
 
