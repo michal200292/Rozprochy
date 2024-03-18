@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Item Details</title>
+    <title>Results</title>
 </head>
 <body>
-    <h1>Item ID: {{ id }}</h1>
+    <div style="width:400px; margin:0 auto;">
+        Current exchange rate<br>
+        1 {{ curr1 }} = {{ conversion_rate }} {{ curr2 }}
+        <br><br>
+        <img width=400 src="{{ url_for('static', path='currency.png') }}" /><br>
+        <br><br>
+        Cat
+        <br>
+        <img width=400px src={{ cat }} /><br>
+        <form method="GET" action="/" enctype="multipart/form-data">
+            <input type="submit" value="Try again">
+        </form>
+    </div>
 </body>
 </html>
