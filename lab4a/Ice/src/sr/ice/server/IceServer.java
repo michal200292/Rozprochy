@@ -16,12 +16,13 @@ public class IceServer {
 
 			// 2. Konfiguracja adaptera
 			// METODA 1 (polecana produkcyjnie): Konfiguracja adaptera Adapter1 jest w pliku konfiguracyjnym podanym jako parametr uruchomienia serwera
-			//ObjectAdapter adapter = communicator.createObjectAdapter("Adapter1");
+			ObjectAdapter adapter = communicator.createObjectAdapter("Adapter1");
 
 			// METODA 2 (niepolecana, dopuszczalna testowo): Konfiguracja adaptera Adapter1 jest w kodzie źródłowym
 			//ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("Adapter1", "tcp -h 127.0.0.2 -p 10000");
 			//ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("Adapter1", "tcp -h 127.0.0.2 -p 10000 : udp -h 127.0.0.2 -p 10000");
-			ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("Adapter2", "tcp -h 127.0.0.2 -p 10000 -z : udp -h 127.0.0.2 -p 10000 -z");
+//			String local_ip = "192.168.0.137";
+//			ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("Adapter2", "tcp -h " + local_ip + " -p 10000 -z : udp -h " + local_ip+ " -p 10000 -z");
 
 			// 3. Utworzenie serwanta/serwantów
 			CalcI calcServant1 = new CalcI();
