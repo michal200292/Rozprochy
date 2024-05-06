@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6a62f469-ea05-4f90-aa29-2455842e9321" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client_java.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Match.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/MatchInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Nothing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/NothingOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Passes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/PassesOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Possession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/PossessionOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/PublisherGrpc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Score.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/ScoreOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Shots.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/ShotsOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Stats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/StatsOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Subscription.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/SubscriptionOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/SubscriptionReply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/SubscriptionReplyOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Team.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/TeamOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/Teams.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gen/sr/proto/TeamsOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/error_prone_annotations-2.10.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/failureaccess-1.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/grpc-api-1.62.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/grpc-context-1.62.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/grpc-core-1.62.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/grpc-netty-1.62.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/grpc-netty-shaded-1.62.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/grpc-protobuf-1.62.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/grpc-protobuf-lite-1.62.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/grpc-stub-1.62.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/guava-31.1-jre.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.annotation-api-1.3.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jsr305-3.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/netty-buffer-4.1.108.Final.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/netty-codec-4.1.11.Final.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/netty-codec-http2-4.1.108.Final.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/netty-common-4.1.75.Final.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/netty-handler-4.1.108.Final(1).jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/netty-transport-4.1.11.Final.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/perfmark-api-0.25.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/protobuf-java-4.26.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/grpc/client/Client.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Match.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/MatchInfo$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/MatchInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Nothing$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Nothing$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Nothing.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/NothingOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Passes$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Passes$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Passes.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PassesOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Possession$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Possession$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Possession.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PossessionOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$AsyncService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$MethodHandlers.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$PublisherBaseDescriptorSupplier.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$PublisherBlockingStub.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$PublisherFileDescriptorSupplier.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$PublisherFutureStub.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$PublisherImplBase.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$PublisherMethodDescriptorSupplier.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc$PublisherStub.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/PublisherGrpc.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Score$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Score$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Score.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/ScoreOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Shots$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Shots$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Shots.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/ShotsOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Stats$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Stats$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Stats.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/StatsOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Subscription$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Subscription$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Subscription.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/SubscriptionOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/SubscriptionReply$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/SubscriptionReply$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/SubscriptionReply.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/SubscriptionReplyOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Team$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Team$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Team.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/TeamOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Teams$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Teams$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/Teams.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/gRPC/sr/proto/TeamsOrBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sr/grpc/client/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sr/grpc/client/Ping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sr/grpc/client/StreamHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client_py/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../client_py/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../protos/match.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../protos/match.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stub/python/match_pb2.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stub/python/match_pb2.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="279YMOa1CfyEXyrPbdrvqXkI0Sw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Client.executor": "Run",
+    "Application.grpcClient.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/DYDAKTYKA/SR/2024/gRPC/lib/netty-codec-4.1.11.Final.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sr.grpc.client.Client" />
+      <module name="client_java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sr.grpc.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JavaSerialization (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sr.serialization.JavaSerialization" />
+      <module name="client_java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sr.serialization.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProtoSerialization" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sr.serialization.ProtoSerialization" />
+      <module name="client_java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sr.serialization.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sr.grpc.client.client" />
+      <module name="client_java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sr.grpc.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="grpcServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sr.grpc.server.grpcServer" />
+      <module name="client_java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sr.grpc.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="client_java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="client_java" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.client" />
+        <item itemvalue="Application.grpcServer" />
+        <item itemvalue="Application.ProtoSerialization" />
+        <item itemvalue="Application.JavaSerialization (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a62f469-ea05-4f90-aa29-2455842e9321" name="Changes" comment="" />
+      <created>1648733728382</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1648733728382</updated>
+      <workItem from="1714973010814" duration="824000" />
+      <workItem from="1714973853660" duration="14469000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
