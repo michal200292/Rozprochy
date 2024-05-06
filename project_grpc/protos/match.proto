@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+service Publisher {
+
+  rpc GetAvailableTeams(Nothing) returns (stream Team);
+
+  rpc StreamEvents(Nothing) returns (stream Stats);
+
+  rpc Subscribe(stream Subscription) returns (SubscriptionReply);
+
+  rpc Ping(Nothing) returns (Nothing);
+
+}
+
+message Nothing {}
+
+message Subscription{
+  string team = 1;
+  bool subscribe = 2;
+}
+
+message SubscriptionReply{
+  repeated string msg = 1;
+}
+
+message Team{
+  string name = 1;
+  string short = 2;
+}
+
+message Stats{
+  MatchInfo info = 1;
+  Teams names = 2;
+  Score score = 3;
+  int32 minute = 4;
+  Shots shots = 5;
+  Possession possession = 6;
+  Passes passes = 7;
+}
+
+message Score{
+  int32 team1 = 1;
+  int32 team2 = 2;
+}
+
+message Teams{
+  Team team1 = 1;
+  Team team2 = 2;
+}
+
+message Shots{
+  int32 team1 = 1;
+  int32 team2 = 2;
+}
+
+message Possession{
+  float team1 = 1;
+  float team2 = 2;
+}
+
+message Passes{
+  int32 team1 = 1;
+  int32 team2 = 2;
+}
+
+enum MatchInfo{
+  MATCH_INFO_START = 0;
+  MATCH_INFO_GOAL = 1;
+  MATCH_INFO_MID_MATCH_STATS = 2;
+  MATCH_INFO_FIRST_HALF_STATS = 3;
+  MATCH_INFO_WHOLE_MATCH_STATS = 4;
+}
