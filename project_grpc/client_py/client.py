@@ -66,7 +66,7 @@ class Client:
                 print("Select teams( short name ): ")
                 requests = (
                     match_pb2.Subscription(team=team, subscribe=(command == 2))
-                    for team in input().strip().split()
+                    for team in input().strip().split() if team
                 )
                 reply = self.stub.Subscribe(requests)
                 for msg in reply.msg:

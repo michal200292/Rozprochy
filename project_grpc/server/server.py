@@ -9,28 +9,25 @@ from data_generator import generate_match_data, short_names, short_to_name
 from queue import Queue, Empty
 from typing import Iterator, ClassVar
 from wrapt import synchronized
+import datetime
 
 
 @dataclass
 class Subscriber:
     id: str
     context: grpc.ServicerContext
-    _ping_time: float = 0
+    _ping_time: datetime = datetime.datetime.now()
     subscribed_teams: set[str] = field(default_factory=set)
     event_queue: Queue[match_pb2.Stats] = field(default_factory=Queue)
     MAX_INACTIVITY: ClassVar[float] = 30
 
     @synchronized
-    def increase_ping_time(self, add: float) -> None:
-        self._ping_time += add
-
-    @synchronized
     def reset_ping_time(self) -> None:
-        self._ping_time = 0
+        self._ping_time = datetime.datetime.now()
 
     @synchronized
     def check_if_inactive(self) -> bool:
-        if self._ping_time > Subscriber.MAX_INACTIVITY:
+        if (datetime.datetime.now() - self._ping_time).seconds > Subscriber.MAX_INACTIVITY:
             return True
         return False
 
@@ -57,11 +54,17 @@ class Publisher(match_pb2_grpc.PublisherServicer):
                     msg.append(f"{request.team} is not a valid short name")
                     continue
                 if request.subscribe:
-                    client.subscribed_teams.add(request.team)
-                    msg.append(f"Added subscription: {short_to_name[request.team]}")
+                    if request.team in client.subscribed_teams:
+                        msg.append(f"You are already subscribed to: {short_to_name[request.team]}")
+                    else:
+                        client.subscribed_teams.add(request.team)
+                        msg.append(f"Added subscription: {short_to_name[request.team]}")
                 else:
-                    client.subscribed_teams.discard(request.team)
-                    msg.append(f"Removed subscription: {short_to_name[request.team]}")
+                    if request.team not in client.subscribed_teams:
+                        msg.append(f"You are not subscribed to: {short_to_name[request.team]}")
+                    else:
+                        client.subscribed_teams.remove(request.team)
+                        msg.append(f"Removed subscription: {short_to_name[request.team]}")
         except grpc.RpcError as e:
             print(e)
 
@@ -75,9 +78,10 @@ class Publisher(match_pb2_grpc.PublisherServicer):
         while True:
             try:
                 stats = client.event_queue.get(block=True, timeout=3)
+                if client.check_if_inactive():
+                    break
                 yield stats
             except Empty:
-                client.increase_ping_time(3)
                 if client.check_if_inactive():
                     break
 
@@ -129,9 +133,11 @@ def main() -> None:
     match_pb2_grpc.add_PublisherServicer_to_server(publisher, server)
     server.add_insecure_port("localhost:50051")
     server.start()
-    server.wait_for_termination()
+    try:
+        server.wait_for_termination()
+    except KeyboardInterrupt:
+        server.stop(0)
 
 
 if __name__ == "__main__":
     main()
-
